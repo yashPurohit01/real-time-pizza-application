@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\SONY\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add express-flash
+  C:\Program Files\nodejs\node.exe C:\Users\SONY\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js dev
 
 PATH: 
   C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\nodejs\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Users\SONY\AppData\Local\Programs\Python\Python39\Scripts\;C:\Users\SONY\AppData\Local\Programs\Python\Python39\;C:\Program Files\MongoDB\Server\4.2\bin;C:\Users\SONY\AppData\Roaming\npm;E:\Microsoft VS Code\bin;C:\Users\SONY\AppData\Local\Microsoft\WindowsApps;
@@ -14,8 +14,12 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: getaddrinfo ENOTFOUND registry.yarnpkg.com
-      at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:67:26)
+  SyntaxError: C:\Users\SONY\Desktop\real-time-pizza-app\package.json: Unexpected token < in JSON at position 811
+      at JSON.parse (<anonymous>)
+      at C:\Users\SONY\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (C:\Users\SONY\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:310:30)
+      at C:\Users\SONY\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:321:13
 
 npm manifest: 
   {
@@ -38,8 +42,13 @@ npm manifest:
       "ejs": "^3.1.6",
       "express": "^4.17.1",
       "express-ejs-layouts": "^2.5.0",
+  <<<<<<< HEAD
+      "express-flash": "^0.0.2",
       "express-session": "^1.17.1",
       "mongoose": "^5.11.17",
+  =======
+      "express-session": "^1.17.1",
+  >>>>>>> 4c2dfd5bb8d3bb865c64c3bbda1b48e7fbdcb1d9
       "tailwindcss": "^2.0.3"
     },
     "devDependencies": {
@@ -2241,6 +2250,11 @@ Lockfile:
       write-file-atomic "^3.0.0"
       xdg-basedir "^4.0.0"
   
+  connect-flash@0.1.x:
+    version "0.1.1"
+    resolved "https://registry.yarnpkg.com/connect-flash/-/connect-flash-0.1.1.tgz#d8630f26d95a7f851f9956b1e8cc6732f3b6aa30"
+    integrity sha1-2GMPJtlaf4UfmVax6MxnMvO2qjA=
+  
   connect-history-api-fallback@^1.6.0:
     version "1.6.0"
     resolved "https://registry.yarnpkg.com/connect-history-api-fallback/-/connect-history-api-fallback-1.6.0.tgz#8b32089359308d111115d81cad3fceab888f97bc"
@@ -3159,6 +3173,13 @@ Lockfile:
     version "2.5.0"
     resolved "https://registry.yarnpkg.com/express-ejs-layouts/-/express-ejs-layouts-2.5.0.tgz#b33f285fa7d5d2b8a6b7ab6569730547156e4e79"
     integrity sha512-27Kza3FR8UqvQsq1ewaxC2IwpgrQttYDEFN5s8D74Fv1VPdzsXFWsiKhPMlNauG+DrgMAmh7FhQl5hKHffd+wQ==
+  
+  express-flash@^0.0.2:
+    version "0.0.2"
+    resolved "https://registry.yarnpkg.com/express-flash/-/express-flash-0.0.2.tgz#23d1a8bcf3f90d707928e489f96869ecad0acda2"
+    integrity sha1-I9GovPP5DXB5KOSJ+Whp7K0KzaI=
+    dependencies:
+      connect-flash "0.1.x"
   
   express-session@^1.17.1:
     version "1.17.1"

@@ -1,5 +1,5 @@
 
-require('dotenv').config();
+const dotenv = require('dotenv')
 const express = require('express');
 const app = express();
 const expressEjsLayouts = require('express-ejs-layouts');
@@ -11,6 +11,8 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const flash = require('express-flash');
 
+// configure env
+dotenv.config()
 
 //create a server
 
@@ -34,14 +36,14 @@ connection.once('open' , () =>{
 
  //session
 
-app.use(session({
+ app.use(session({
     secret: process.env.COOKIE_SECRET,
     resave:false,
     saveUninitialized:false,
     cookie:{maxAge:1000 * 60 * 60  * 24  }
 }))
-
-app.use(flash) 
+app.use(flash ()) 
+ 
 
 // set template engine
 
@@ -57,6 +59,21 @@ app.set('view engine' , 'ejs')
 require('./routes/web')(app)
 
 
+// add session middleware
+/* app.use(
+  session({
+    secret: process.env.COOKIE_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true }
+  })
+)
+ */
+// routes
+/* app.get('/', (req, res) => {
+  res.render('home')
+})
+ */
 app.listen(Port,() =>{
     console.log(`Server is listening to port number ${Port}`);
 })
