@@ -10,7 +10,7 @@ dotenv.config()
 // create a server
 const app = express()
 
-const PORT = process.env.Port || 3000
+const PORT = process.env.PORT || 3000
 
 // set static folder -- for assets
 app.use(express.static('public'))
