@@ -1,12 +1,12 @@
 @import './variables';
 
-body{
+body {
      font-family: 'lato' , san-serif;
      -webkit-font-smoothing : antialiased ;
      color: $dark;
-     height: 4000px;
+    
 }
-section.hero{
+section.hero ,section.cart , .login{
     background-color: $secondary;
 }
 nav li:last-child a{
@@ -20,10 +20,8 @@ nav li a{
     transition: $smooth;
     &:hover{
         color: $primary-hover;
-    }
-    
+    }   
 }
-
 .size{
     background-color: $secondary;
 }
@@ -32,10 +30,31 @@ nav li a{
     border:  2px solid $primary;
     color: $primary;
     transition: $smooth;
-    
+
     &:hover{
         background: $primary;
         border-color: $pure;
         color: $pure;
     }
+}
+ .btn-primary{
+    border:  2px solid $primary;
+    color: $pure;
+    background-color: $primary;
+    transition: $smooth;
+
+    &:hover{
+        background: $pure;
+        border-color: $primary;
+        color: $primary;
+    }
+}
+
+.amount{
+    color: $primary;
+}
+
+.height{
+    background-color: $secondary;
+    min-height: calc(100vh - 69px) ;
 }
