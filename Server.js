@@ -10,14 +10,10 @@ const path = require('path')
 const mongoose = require('mongoose');
 const session = require('express-session');
 const flash = require('express-flash');
+const MongoDbStore = require('connect-mongo')(session)
 
 // configure env
 dotenv.config()
-
-//create a server
-
-
-
 
 
 //database connection
@@ -34,15 +30,21 @@ connection.once('open' , () =>{
     console.log('Database connection failed...')
 })
 
+//session store
+let mongoStore = new MongoDbStore( {
+    mongooseConnection: connection , 
+    collection : 'sessions'
+})
  //session
 
  app.use(session({
     secret: process.env.COOKIE_SECRET,
     resave:false,
+    store: mongoStore,
     saveUninitialized:false,
-    cookie:{maxAge:1000 * 60 * 60  * 24  }
+    cookie:{maxAge:1000 * 60 *60*24 } //24 hours
 }))
-app.use(flash ()) 
+app.use(flash()) 
  
 
 // set template engine
