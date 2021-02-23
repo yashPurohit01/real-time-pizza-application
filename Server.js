@@ -51,6 +51,8 @@ app.use(flash())
 
 app.use(express.static('public'));
 
+app. use(express.json()); 
+
 app.use(expressEjsLayouts);
 
 app.set('views' , path.join(__dirname ,'/resources/views'))
