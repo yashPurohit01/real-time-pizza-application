@@ -30,8 +30,8 @@ const cartController = () =>{
             }
             return res.json({
                 total_Quantity: req.session.cart.total_Quantity ,
-               /*  totalPrice : req.session.cart.total_Price ,
-                totalitems : req.session.cart.items */
+               totalPrice : req.session.cart.total_Price ,
+                totalitems : req.session.cart.items 
             })
         }
     }

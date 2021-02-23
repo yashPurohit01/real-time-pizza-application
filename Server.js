@@ -47,12 +47,20 @@ let mongoStore = new MongoDbStore( {
 app.use(flash()) 
  
 
+
 // set template engine
 
 app.use(express.static('public'));
 
 app. use(express.json()); 
 
+ //global middlware
+
+app.use((req ,res , next ) => {
+  res.locals.session = req.session 
+  next ()
+})
+ 
 app.use(expressEjsLayouts);
 
 app.set('views' , path.join(__dirname ,'/resources/views'))
