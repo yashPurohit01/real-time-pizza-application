@@ -16,7 +16,6 @@ const updateCart = (pizza) => {
 addToCart.forEach(btn =>{
     btn.addEventListener('click' , (e) =>{
        let pizza = JSON.parse (btn.dataset.pizza);
-       /* console.log(pizza) */
        updateCart(pizza)
     
     })

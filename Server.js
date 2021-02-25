@@ -5,11 +5,12 @@ const app = express();
 const expressEjsLayouts = require('express-ejs-layouts');
 const ejs = require('ejs');
 const Port = process.env.Port || 3000 ; 
-
+const passpoer = require('passport')
 const path = require('path')
 const mongoose = require('mongoose');
 const session = require('express-session');
 const flash = require('express-flash');
+const passport = require('passport');
 const MongoDbStore = require('connect-mongo')(session)
 
 // configure env
@@ -25,16 +26,34 @@ const connection = mongoose.connection ;
 
 
 connection.once('open' , () =>{
+
     console.log('database connected.....')
-}).catch(err =>{
+}
+).catch(err =>{
+
     console.log('Database connection failed...')
 })
 
+//passport config
+
+const passportInit = require('./app/config/passport')
+
+passportInit(passport)
+app.use(passport.initialize())
+
+app.use(passport.session())
+
+
+
 //session store
 let mongoStore = new MongoDbStore( {
+
     mongooseConnection: connection , 
+
     collection : 'sessions'
 })
+
+
  //session
 
  app.use(session({
@@ -54,6 +73,8 @@ app.use(express.static('public'));
 
 app. use(express.json()); 
 
+app.use(express.urlencoded({extended :false}));
+
  //global middlware
 
 app.use((req ,res , next ) => {
@@ -70,22 +91,6 @@ app.set('view engine' , 'ejs')
 //route
 require('./routes/web')(app)
 
-
-// add session middleware
-/* app.use(
-  session({
-    secret: process.env.COOKIE_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true }
-  })
-)
- */
-// routes
-/* app.get('/', (req, res) => {
-  res.render('home')
-})
- */
 app.listen(Port,() =>{
     console.log(`Server is listening to port number ${Port}`);
 })

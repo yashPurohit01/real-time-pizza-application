@@ -57,3 +57,7 @@ nav li a:hover {
   background-color: #f8f8f8;
   min-height: calc(100vh - 69px);
 }
+
+.background {
+  background-color: #e8e1dd;
+}
