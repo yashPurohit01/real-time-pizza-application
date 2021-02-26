@@ -24,10 +24,8 @@ const init = (passport) => {
                         return done(null, user, { message: "logged in succesfully " })
                     }
 
-                    else {
-
-                        return done(null, false, { message: 'wrong username or password' })
-                    }
+                    return done(null, false, { message: 'wrong username or password' })
+            
                 })
                 .catch(err => {
                     return done(null, false, { message: 'something went wrong' })

@@ -1,6 +1,8 @@
 const User = require("../../models/user")
 
 const bcrypt = require('bcrypt')
+const flash = require("express-flash")
+const passport = require("passport")
 
 /* const User = require('../models/user.js') */
  const authController = () => {
@@ -11,7 +13,7 @@ const bcrypt = require('bcrypt')
 
          postLogin(req , res , next) {
 
-            password.authentication('local' , (err , user , info ) => {
+            passport.authenticate('local' , (err , user , info ) => {
 
                 if(err){
                     req.flash('error' ,info.message)
@@ -19,8 +21,16 @@ const bcrypt = require('bcrypt')
                 }
                 if(!user){
                     req.flash('error' ,info.message)
+                    return res.redirect('/login')
                 }
-            })
+
+                req.logIn(user , (err) =>{
+                    if(err){
+                        req.flash(error , info.message)
+                    }
+                    return res.redirect('/')
+                })
+            })(req , res , next)
 
          },
 
@@ -66,7 +76,8 @@ const bcrypt = require('bcrypt')
 
                password: bcryptPassword 
             })
-            .save()
+
+            user.save()
 
             . then(result => {
                //login 
@@ -81,6 +92,11 @@ const bcrypt = require('bcrypt')
             .catch(err => res.flash('error' ,'Oops something went wrong'))
             
             
+        },
+        logout(req, res){
+            req.logout()
+
+           return res.redirect('/')
         }
     }
  }

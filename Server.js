@@ -5,7 +5,6 @@ const app = express();
 const expressEjsLayouts = require('express-ejs-layouts');
 const ejs = require('ejs');
 const Port = process.env.Port || 3000 ; 
-const passpoer = require('passport')
 const path = require('path')
 const mongoose = require('mongoose');
 const session = require('express-session');
@@ -34,14 +33,6 @@ connection.once('open' , () =>{
     console.log('Database connection failed...')
 })
 
-//passport config
-
-const passportInit = require('./app/config/passport')
-
-passportInit(passport)
-app.use(passport.initialize())
-
-app.use(passport.session())
 
 
 
@@ -65,6 +56,14 @@ let mongoStore = new MongoDbStore( {
 }))
 app.use(flash()) 
  
+//passport config
+
+const passportInit = require('./app/config/passport')
+
+passportInit(passport)
+app.use(passport.initialize())
+
+app.use(passport.session())
 
 
 // set template engine
@@ -79,6 +78,7 @@ app.use(express.urlencoded({extended :false}));
 
 app.use((req ,res , next ) => {
   res.locals.session = req.session 
+  res.locals.user = req.user
   next ()
 })
  

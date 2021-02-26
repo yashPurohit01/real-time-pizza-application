@@ -25,8 +25,26 @@
         <ul class="flex items-center">
           <li class="ml-6"><a href="#">Menu</a></li>
           <li class="ml-6"><a href="#">Offers</a></li>
-          <li class="ml-6"><a href="/register">Register</a></li>
-          <li class="ml-6"><a href="/login">Login</a></li>
+
+          <% if(user) { %>
+                <li class="ml-6">
+                  <form id="logout" action="/logout"  method="POST"  >
+                    
+                    
+                    <a onclick="document.getElementById('logout').submit()"  href="#" >Logout<a>
+
+
+                  </form>
+
+                  </li>  
+               
+                
+          <% } else {%>
+
+                <li class="ml-6"><a href="/register">Register</a></li>
+                <li class="ml-6"><a href="/login">Login</a></li>
+
+          <% } %>
           <li class="ml-6">
             <a class="flex inline-block px-3 py-1.5 rounded-full" href="/cart">
               <span id ="cartCounter"  class=" pr-1 text-white "><%=  session.cart ? session.cart.total_Quantity : ""  %></span>
